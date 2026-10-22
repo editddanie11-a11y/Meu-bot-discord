@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: roblox-store-premium
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    disk:
+      name: roblox-store-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.0
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_DIR
+        value: /var/data
+      - key: TRUST_PROXY
+        value: "true"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: PIX_KEY
+        sync: false
+      - key: PIX_KEY_TYPE
+        value: aleatoria
+      - key: PIX_COPY_PASTE
+        sync: false
+      - key: PIX_RECEIVER_NAME
+        sync: false
+      - key: PIX_BANK_NAME
+        value: Banco Inter
